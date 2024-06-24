@@ -30,9 +30,9 @@ function Chat() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-            <div className="w-full max-w-lg p-4 bg-white rounded-lg shadow-md">
+            <div className="w-full max-w-lg p-4 bg-white rounded-lg shadow-md text-gray-900">
                 <textarea
-                    className="w-full h-32 p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                    className="w-full h-32 p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300 text-black-900 placeholder-gray-500"
                     placeholder="Type your message here..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}

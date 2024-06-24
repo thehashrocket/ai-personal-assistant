@@ -10,11 +10,15 @@ async function handleOpenAIResponse(openAIResponse) {
         parsedResponse = JSON.parse(openAIResponse);
     } catch (error) {
         console.error('Error parsing OpenAI response:', error);
-        return 'There was an error processing your request.';
+        return openAIResponse; // Return the raw response for conversational replies
     }
 
-    const { intent, details } = parsedResponse || {};
-    console.log('Parsed OpenAI response:', { intent, details });
+    const { intent, details, response } = parsedResponse || {};
+    console.log('Parsed OpenAI response:', { intent, details, response });
+
+    if (intent === 'general_query') {
+        return details; // Return the details as the response for general queries
+    }
 
     if (!intent) {
         console.log('Unknown intent:', intent);
@@ -38,7 +42,9 @@ async function handleOpenAIResponse(openAIResponse) {
     }
 }
 
+
 async function createEvent(details) {
+    console.log('Creating event with details:', details);
     const { summary, description, start, end } = details;
 
     const event = {
@@ -63,6 +69,7 @@ async function createEvent(details) {
 }
 
 async function sendReminder(details) {
+    console.log('Sending reminder with details:', details);
     const { to, event } = details;
 
     const response = await client.messages.create({
@@ -75,6 +82,7 @@ async function sendReminder(details) {
 }
 
 async function querySchedule(date) {
+    console.log('Querying schedule for date:', date);
     const events = await calendar.events.list({
         calendarId: 'primary',
         timeMin: new Date(date).toISOString(),
@@ -185,11 +193,15 @@ async function scheduleTextReminder(details) {
 async function createReminder(details) {
     console.log('Creating reminder with details:', details);
 
-    const { title, date } = details;
+    // Handle both `task` and `title` as reminder titles
+    const title = details.title || details.task;
+    const { date } = details;
     const currentDateTime = new Date();
 
     if (!title || !date) {
         console.error('Invalid details for creating reminder:', details);
+        console.log('Title:', title);
+        console.log('Date:', date);
         return 'Invalid details provided for creating reminder.';
     }
 
@@ -214,15 +226,17 @@ async function createReminder(details) {
     }
 }
 
+
 export async function POST(req) {
     const { message } = await req.json();
+    console.log('Received message:', message);
 
     const openAIResponse = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
             {
                 role: 'system',
-                content: `You are a virtual assistant. Interpret the following commands and provide a response in JSON format with the intent and details.
+                content: `You are a virtual assistant. Interpret the following commands and provide a response in JSON format with the intent and details. If the command is not specific, respond in a conversational manner.
 
                 Commands:
                 1. Create an event: "Create an event titled 'Meeting' on June 5th at 10 AM for 1 hour."
@@ -230,6 +244,7 @@ export async function POST(req) {
                 3. Query schedule: "What is on my schedule for June 5th?"
                 4. Schedule text reminder: "Schedule a text reminder for the 'Meeting' event 10 minutes before."
                 5. Create reminder: "Remind me to 'Call the doctor' on June 12th."
+                6. General query: "How are you feeling?"
 
                 Format:
                 {
@@ -242,13 +257,14 @@ export async function POST(req) {
                     }
                 }
 
-                Now, interpret the following command:
+                If the command does not match any of the above formats, respond conversationally.
                 `,
             },
             { role: 'user', content: message },
         ],
         max_tokens: 150,
     });
+    console.log('OpenAI response:', openAIResponse);
 
     if (openAIResponse.choices && openAIResponse.choices[0] && openAIResponse.choices[0].message && openAIResponse.choices[0].message.content) {
         console.log('OpenAI response:', openAIResponse.choices[0].message.content);
