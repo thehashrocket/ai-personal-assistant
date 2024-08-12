@@ -25,6 +25,14 @@
     ag-charts-types "10.0.2"
     tslib "^2.3.0"
 
+"@ag-grid-community/core@32.1.0":
+  version "32.1.0"
+  resolved "https://registry.yarnpkg.com/@ag-grid-community/core/-/core-32.1.0.tgz#cbc50f00a63a3edc539d046fb712132c15092214"
+  integrity sha512-fHpgSZa/aBjg2DdOzooDxILFZqxmxP8vsjRfeZVtqby19mTKwNAclE7Z6rWzOA0GYjgN9s8JwLFcNA5pvfswMg==
+  dependencies:
+    ag-charts-types "10.1.0"
+    tslib "^2.3.0"
+
 "@ag-grid-community/csv-export@^32.0.2":
   version "32.0.2"
   resolved "https://registry.yarnpkg.com/@ag-grid-community/csv-export/-/csv-export-32.0.2.tgz#d87b494a2e5b62a678c6c6ed4871744046490903"
@@ -33,12 +41,12 @@
     "@ag-grid-community/core" "32.0.2"
     tslib "^2.3.0"
 
-"@ag-grid-community/infinite-row-model@^31.3.2":
-  version "31.3.2"
-  resolved "https://registry.yarnpkg.com/@ag-grid-community/infinite-row-model/-/infinite-row-model-31.3.2.tgz#b1a1bd5e902b4bda5cdd836a4018c08bf6910ea4"
-  integrity sha512-b0MVmuMLDwzKXFux7REfp1wkjRi+91xR/bdzeQVKfuL4laJL2mlNCWnphdZTtYAFxMubABBhWgI2uQl3U/Jpew==
+"@ag-grid-community/infinite-row-model@^32.1.0":
+  version "32.1.0"
+  resolved "https://registry.yarnpkg.com/@ag-grid-community/infinite-row-model/-/infinite-row-model-32.1.0.tgz#4c8312c738cc811a67a6f879ae6ff2d5785a3365"
+  integrity sha512-+otBbrRgP+10CzYIyKj3BfL7GBs3f4xtQy7l6Wm9e74M4zfIW805x92xV+x65pkrX5L0VZRlKOPWhsoI1h2seQ==
   dependencies:
-    "@ag-grid-community/core" "31.3.2"
+    "@ag-grid-community/core" "32.1.0"
     tslib "^2.3.0"
 
 "@ag-grid-community/react@^31.2.0":
@@ -806,6 +814,11 @@ ag-charts-types@10.0.2:
   version "10.0.2"
   resolved "https://registry.yarnpkg.com/ag-charts-types/-/ag-charts-types-10.0.2.tgz#fe4d7aa3cdc4ba6f354d7b4bbf65818e242f2fd6"
   integrity sha512-Nxo5slHOXlaeg0gRIsVnovAosQzzlYfWJtdDy0Aq/VvpJru/PJ+5i2c9aCyEhgRxhBjImsoegwkgRj7gNOWV6Q==
+
+ag-charts-types@10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/ag-charts-types/-/ag-charts-types-10.1.0.tgz#f265665f6b92742bb0bc2dcfab319b21e6d78749"
+  integrity sha512-pk9ft8hbgTXJ/thI/SEUR1BoauNplYExpcHh7tMOqVikoDsta1O15TB1ZL4XWnl4TPIzROBmONKsz7d8a2HBuQ==
 
 agent-base@6:
   version "6.0.2"
