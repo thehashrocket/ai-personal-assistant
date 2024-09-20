@@ -1,6 +1,8 @@
 import { postRouter } from "~/server/api/routers/post";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
-
+import { googleCalendarRouter } from "./routers/googleCalendar";
+import { tokenRouter } from "./routers/token";
+import { conversationRouter } from "./routers/conversations";
 /**
  * This is the primary router for your server.
  *
@@ -8,6 +10,9 @@ import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
   post: postRouter,
+  googleCalendar: googleCalendarRouter,
+  token: tokenRouter,
+  conversations: conversationRouter,
 });
 
 // export type definition of API

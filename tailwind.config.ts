@@ -10,5 +10,6 @@ export default {
       },
     },
   },
+  darkMode: 'media', // Enable dark mode based on system preferences
   plugins: [require("@tailwindcss/typography"), require('daisyui')],
 } satisfies Config;

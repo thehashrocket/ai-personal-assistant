@@ -16,8 +16,6 @@ export default async function Home() {
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
         <h1>Personal Assistant App</h1>
         <Chat />
-        <Message />
-        <Calendar />
         <div className="flex flex-col items-center gap-2">
           <p className="text-2xl text-white">
             {hello ? hello.greeting : "Loading tRPC query..."}
@@ -35,8 +33,6 @@ export default async function Home() {
             </Link>
           </div>
         </div>
-
-        <CrudShowcase />
       </div>
     </main>
   );

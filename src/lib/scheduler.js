@@ -1,6 +1,11 @@
 import cron from 'node-cron';
 import client from './twilio';
 
+/**
+ * @param {string} to
+ * @param {string} message
+ * @param {string | number | Date} scheduleTime
+ */
 export function scheduleReminder(to, message, scheduleTime) {
     // Parse the scheduleTime to a cron format or use a Date object
     const date = new Date(scheduleTime);
